@@ -1,0 +1,77 @@
+<main class="main">
+  <div class="content bgGradient">
+    <div style="display: flex">
+      <div
+        style="
+          flex: auto;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <div style="max-width: 900px">
+          <div>
+            <img src="logo.jpeg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <mat-card class="loginCard" appearance="outlined">
+          <mat-card-content>
+            <div style="display: flex; align-items: center">
+              <div style="max-width: 400px; margin: auto">
+                <img width="120px" src="logo.jpeg" />
+                <p style="color: #000; font-weight: 500; font-size: 24px">
+                  Psico-Tropics
+                </p>
+
+                <h6>Iniciar sesión</h6>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Usuario</mat-label>
+                    <input matInput formControlName="usuario" type="text" />
+                    <mat-error
+                      *ngIf="
+                        loginForm.get('usuario')?.invalid &&
+                        loginForm.get('usuario')?.touched
+                      "
+                    >
+                      Es requerido
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input
+                      matInput
+                      formControlName="password"
+                      type="password"
+                    />
+                    <mat-error
+                      *ngIf="
+                        loginForm.get('password')?.invalid &&
+                        loginForm.get('password')?.touched
+                      "
+                    >
+                      La contraseña es obligatoria.
+                    </mat-error>
+                  </mat-form-field>
+                  <div style="height: 20px"></div>
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    type="submit"
+                    [disabled]="loginForm.invalid"
+                  >
+                    Iniciar sesión
+                  </button>
+                </form>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</main>

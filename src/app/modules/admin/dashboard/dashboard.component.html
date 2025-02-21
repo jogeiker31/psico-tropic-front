@@ -1,0 +1,86 @@
+<div>
+  <p class="subtitle">Metricas</p>
+  @if(metrics){
+
+  <div style="display: flex; gap: 20px; flex-wrap: wrap">
+    <mat-card class="metricCard1">
+      <mat-card-content>
+        <p class="title">Usuarios Registrados</p>
+        <p class="number">{{ metrics.users }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard2">
+      <mat-card-content>
+        <p class="title">Usuarios Premium</p>
+        <p class="number">{{ metrics.memberships }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard1">
+      <mat-card-content>
+        <p class="title">Membresias Aceptadas</p>
+        <p class="number">{{ metrics.mApproveds }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard2">
+      <mat-card-content>
+        <p class="title">Membresias Rechazadas</p>
+        <p class="number">{{ metrics.mRejectes }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard1">
+      <mat-card-content>
+        <p class="title">Membresias pendientes</p>
+        <p class="number">{{ metrics.mPending }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard2">
+      <mat-card-content>
+        <p class="title">Libros Creados</p>
+        <p class="number">{{ metrics.books }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard1">
+      <mat-card-content>
+        <p class="title">Libros Vendidos</p>
+        <p class="number">{{ metrics.booksBoughts }}</p>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="metricCard1">
+      <mat-card-content>
+        <p class="title">Libros Pendientes</p>
+        <p class="number">{{ metrics.booksPending }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div style="height: 20px"></div>
+  <p class="subtitle">Libros mas vendidos</p>
+  <ol>
+    @for (book of metrics.mostBooksBought; track book.bookId) {
+    <li style="font-size: 20px; font-weight: 500">
+      {{ book.title }} - {{ book.totalBought }} ventas
+    </li>
+    }
+  </ol>
+  <div style="height: 20px"></div>
+  <p class="subtitle">Compras de libros realizadas por banco</p>
+  <ol>
+    @for (book of metrics.purchasesByBank; track book._id) {
+    <li style="font-size: 20px; font-weight: 500">
+      {{ book.bankName }} ({{ book.bankType }}) -
+      {{ book.totalPurchases }} ventas
+    </li>
+    }
+  </ol>
+  <div style="height: 20px"></div>
+  <p class="subtitle">Compras de membresias realizadas por banco</p>
+  <ol>
+    @for (book of metrics.membershipPurchasesByBank; track book._id) {
+    <li style="font-size: 20px; font-weight: 500">
+      {{ book.bankName }} ({{ book.bankType }}) -
+      {{ book.totalPurchases }} ventas
+    </li>
+    }
+  </ol>
+
+  }
+</div>

@@ -1,0 +1,28 @@
+.modal-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: white;
+  }
+  
+  .modal-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }

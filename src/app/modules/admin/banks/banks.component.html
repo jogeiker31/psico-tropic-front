@@ -1,0 +1,17 @@
+<div>
+  <div style="display: flex; flex-wrap: wrap; gap: 30px">
+    @for (bank of banks; track bank._id) {
+    <bank-card [bank]="bank"></bank-card>
+
+    }
+  </div>
+</div>
+<div class="fab">
+  <button
+    (click)="create()"
+    mat-fab
+    aria-label="Example icon button with a delete icon"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

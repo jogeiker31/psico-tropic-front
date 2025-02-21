@@ -1,0 +1,56 @@
+<div style="padding: 20px; min-width: 500px">
+  <p class="subtitle" style="text-align: center">Editar cuenta de banco</p>
+
+  <form [formGroup]="form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Banco</mat-label>
+      <input matInput formControlName="bank" placeholder="Banco de Venezuela" />
+    </mat-form-field>
+    <p>Tipo</p>
+    <mat-radio-group formControlName="type" style="gap: 20px">
+      <mat-radio-button value="PAGO">Pago movil</mat-radio-button>
+      <mat-radio-button style="margin-left: 20px" value="TRANSFERENCIA"
+        >Transferencia</mat-radio-button
+      >
+    </mat-radio-group>
+    <div style="height: 20px"></div>
+    @if(form.controls["type"].value == "TRANSFERENCIA"){
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nombre Titular</mat-label>
+      <input matInput formControlName="name" placeholder="Pedro Perez" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Numero de cuenta</mat-label>
+      <input
+        matInput
+        formControlName="bankAccount"
+        placeholder="0102xxxxxxxxxxxx"
+      />
+    </mat-form-field>
+    }@else{
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Codigo del banco</mat-label>
+      <input matInput formControlName="bankCode" placeholder="0102" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>C.I</mat-label>
+      <input
+        matInput
+        formControlName="identification"
+        placeholder="V11111111"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>mobile</mat-label>
+      <input matInput formControlName="mobile" placeholder="412555555" />
+    </mat-form-field>
+    }
+
+    <div style="text-align: center; padding: 20px; gap: 20px; display: flex">
+      <button mat-stroked-button mat-dialog-close>Descartar</button>
+      <button mat-flat-button [disabled]="form.invalid" (click)="create()">
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+</div>

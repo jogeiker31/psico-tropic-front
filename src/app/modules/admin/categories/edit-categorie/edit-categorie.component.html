@@ -1,0 +1,28 @@
+<div style="padding: 20px">
+  <p class="modal-title">Editar categoria</p>
+
+  <div style="padding: 20px">
+    <form [formGroup]="form" (ngSubmit)="edit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <input matInput formControlName="name" type="text" />
+        <mat-error *ngIf="form.get('name')?.invalid">
+          Debe ingresar un nombre a la categoria
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <div
+      style="
+        text-align: center;
+        gap: 20px;
+        display: flex;
+        justify-content: center;
+      "
+    >
+      <button mat-button color="accent" mat-dialog-close>Cancelar</button>
+      <button mat-button [disabled]="form.invalid" (click)="edit()">
+        Editar
+      </button>
+    </div>
+  </div>
+</div>

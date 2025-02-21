@@ -1,0 +1,11 @@
+<div class="book-container" (click)="open()">
+  <div class="book">
+    <img class="cover" [src]="book.cover | fileView" alt="" />
+
+    <div class="price">{{ book.price }} bsd</div>
+  </div>
+  <div>
+    <p class="name">{{ book.name }}</p>
+    <p class="author">{{ book.author }}</p>
+  </div>
+</div>

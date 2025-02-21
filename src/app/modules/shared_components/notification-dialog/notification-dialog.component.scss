@@ -1,0 +1,18 @@
+.notification {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid;
+  &:hover {
+    background-color: #dae1fa;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+  .date {
+    margin: 0;
+    padding: 0px;
+    font-size: 10px;
+    text-align: right;
+  }
+}

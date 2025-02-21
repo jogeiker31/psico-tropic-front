@@ -1,0 +1,76 @@
+<div>
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+      <div style="margin-top: 20px">
+        <div style="text-align: center">
+          <p style="color: #005cbb; font-weight: 500; font-size: 16px">
+          PSICO-TROPICS
+          </p>
+          <img width="100px" src="logo.jpeg" />
+          <p style="margin-top: 10px; font-size: 18px; font-weight: 500">
+            {{ user?.nombre_apellido }}
+          </p>
+          @if(isPremium){
+          <div
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <div matTooltip="Usuario Membresia Premium" class="premium">
+              Premium
+            </div>
+          </div>
+          }
+        </div>
+
+        <div style="text-align: center">
+          @for (button of buttons; track button.text) {
+          <div style="text-align: left">
+            <button class="nav-btn" mat-button [routerLink]="button.link">
+              <div style="display: flex; gap: 20px">
+                <mat-icon>{{ button.icon }}</mat-icon> {{ button.text }}
+              </div>
+            </button>
+          </div>
+
+          }
+        </div>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <mat-toolbar color="primary" class="toolbar">
+        <span class="spacer"></span>
+        <div>
+          <!-- <mat-icon
+            [matBadge]="notifications.length"
+            matBadgePosition="below"
+            [matMenuTriggerFor]="notification"
+            class="user-icon"
+            >notifications</mat-icon
+          >
+
+          <mat-menu #notification="matMenu" class="notifications-menu">
+            <notification-dialog></notification-dialog>
+          </mat-menu> -->
+          <mat-icon
+            style="margin-left: 10px"
+            fontIcon="person"
+            [matMenuTriggerFor]="menu"
+            class="user-icon"
+          ></mat-icon>
+          <mat-menu #menu="matMenu">
+            <!-- <button mat-menu-item>Perfil</button> -->
+            <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+      <div
+        style="
+          min-height: calc(100vh - 140px);
+          position: relative;
+          padding: 20px;
+        "
+      >
+        <router-outlet />
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

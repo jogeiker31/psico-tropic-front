@@ -1,0 +1,55 @@
+<div style="padding: 20px">
+  <p class="subtitle" style="text-align: center">Editar Doctor</p>
+
+  <form [formGroup]="form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nombre y Apellido</mat-label>
+      <input
+        matInput
+        formControlName="nombre_apellido"
+        placeholder="Arianna Hernandez"
+      />
+    </mat-form-field>
+
+    <div style="height: 20px"></div>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>C.I</mat-label>
+      <input matInput formControlName="cedula" placeholder="V1231231" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Código Farmaceutico</mat-label>
+      <input
+        matInput
+        formControlName="codigo_farmaceutico"
+        placeholder="xxxxxx"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Código Colaborador</mat-label>
+      <input
+        matInput
+        formControlName="codigo_colaborador"
+        placeholder="xxxxxx"
+      />
+    </mat-form-field>
+
+    <div
+      style="
+        display: flex;
+        text-align: center;
+        padding: 20px;
+        gap: 20px;
+        justify-content: center;
+      "
+    >
+      <button mat-stroked-button  mat-dialog-close>
+        Descartar
+      </button>
+      <button mat-flat-button [disabled]="form.invalid" (click)="save()">
+        Guardar cambios
+      </button>
+    </div>
+  </form>
+</div>

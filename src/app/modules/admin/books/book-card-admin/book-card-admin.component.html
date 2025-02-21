@@ -1,0 +1,23 @@
+<div class="book-container">
+  <div class="book">
+    <img class="cover" [src]="book.cover | fileView" alt="" />
+    <div class="book-option">
+      <button
+        [matMenuTriggerFor]="menu"
+        mat-mini-fab
+        aria-label="Example icon button with a delete icon"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="edit()">Editar</button>
+        <button mat-menu-item (click)="delete()">Eliminar</button>
+      </mat-menu>
+    </div>
+    <div class="price">{{ book.price }} bsd</div>
+  </div>
+  <div>
+    <p class="name">{{ book.name }}</p>
+    <p class="author">{{ book.author }}</p>
+  </div>
+</div>

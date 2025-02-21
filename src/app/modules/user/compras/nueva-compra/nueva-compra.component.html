@@ -1,0 +1,144 @@
+<div>
+  <p class="subtitle">Nueva compra</p>
+
+  <form [formGroup]="form">
+    <div style="display: flex">
+      <div style="flex: 1; padding: 16px" class="divider-right">
+        <p class="subtitle2">Cliente</p>
+        <mat-form-field>
+          <mat-label>Tipo Cliente</mat-label>
+          <mat-select formControlName="tipoCliente">
+            <mat-option value="Titular">Titular</mat-option>
+            <mat-option value="Representante">Representante</mat-option>
+            <mat-option value="Mascota">Mascota</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div formGroupName="cliente">
+          <!-- Indicar que cliente es un FormGroup -->
+          <div style="display: flex; align-items: center">
+            <div style="flex: auto">
+              <mat-form-field>
+                <mat-label>C.I</mat-label>
+                <input
+                  matInput
+                  formControlName="cedula"
+                  placeholder="V1231231"
+                />
+              </mat-form-field>
+            </div>
+            <div>
+              <button (click)="buscarCliente()" mat-icon-button>
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nombre y Apellido</mat-label>
+            <input matInput formControlName="nombre_apellido" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direccion" />
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono" />
+          </mat-form-field>
+        </div>
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>C.I</mat-label>
+              <input
+                matInput
+                type="search"
+                formControlName="cliente.cedula"
+                placeholder="V1231231"
+              />
+            </mat-form-field> -->
+      </div>
+
+      <div style="flex: 1; padding: 16px">
+        <p class="subtitle2">Medicamentos</p>
+
+        <div>
+          @for (data of medicamentos; track data.medicamento._id) {
+          <div class="container-variante">
+            <div class="variante">
+              <div style="width: 150px; display: flex; align-items: center">
+                <img
+                  style="
+                    width: 100%;
+                    border-radius: 16px;
+                    object-fit: cover;
+                    height: 100%;
+                  "
+                  [src]="data.medicamento.foto | fileView"
+                  alt=""
+                />
+              </div>
+              <div style="flex: auto">
+                <p class="name">
+                  {{ data.medicamento.marca }}
+                  {{ data.medicamento.presentacion }} x
+                  {{ data.medicamento.numero_tabletas }}
+                </p>
+                <p style="font-size: 12px; margin-bottom: 2px">
+                  {{ data.medicamento.descripcion }}
+                </p>
+                <p style="font-size: 12px; margin-bottom: 2px; margin-top: 2px">
+                  {{ data.medicamento.documento_requerido }}
+                </p>
+                <p style="font-size: 12px; margin-top: 2px">
+                  {{ data.medicamento.importado ? "Importado" : "Nacional" }}
+                </p>
+              </div>
+            </div>
+            <div style="display: flex; padding: 5px">
+              <div style="flex: auto">
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <div>Cantidad:</div>
+                  <div style="width: 80px">
+                    <mat-form-field class="custom-input">
+                      <input
+                        [ngModelOptions]="{ standalone: true }"
+                        matInput
+                        type="number"
+                        [(ngModel)]="data.cantidad"
+                        placeholder="0"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button
+                  mat-stroked-button
+                  (click)="remover(data.medicamento._id)"
+                >
+                  Remover
+                </button>
+              </div>
+            </div>
+            @if(data.limite != undefined && data.cantidad > data.limite){
+            <p class="error">
+              Solo puedes comprar hasta {{ data.limite }} unidades este mes.
+            </p>
+            }
+          </div>
+          }
+        </div>
+        <div style="text-align: center; padding: 10px">
+          <button mat-flat-button (click)="agregarMedicamento()">
+            Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; padding: 20px">
+      <button mat-flat-button [disabled]="invalid" (click)="generar()">
+        Generar compra
+      </button>
+    </div>
+  </form>
+</div>

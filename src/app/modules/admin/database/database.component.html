@@ -1,0 +1,40 @@
+<div>
+  <p class="subtitle">Base de datos</p>
+  MongoDB
+  <div style="height: 20px"></div>
+  <p class="subtitle">Respaldo</p>
+  <div
+    (click)="backup()"
+    style="
+      max-width: 400px;
+      border-radius: 8px;
+      padding: 30px;
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      cursor: pointer;
+    "
+  >
+    Respaldo <mat-icon>cloud_download</mat-icon>
+  </div>
+  <div style="height: 20px"></div>
+  <p class="subtitle">Restauración</p>
+  <div
+    (click)="restore()"
+    style="
+      max-width: 400px;
+      border-radius: 8px;
+      padding: 30px;
+      border: 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      cursor: pointer;
+    "
+  >
+    Restauración <mat-icon>cloud_upload</mat-icon>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div style="padding: 20px">
+  <button class="close" mat-dialog-close mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+  <p class="subtitle">Agregar medicamento</p>
+
+  <div style="display: flex; align-items: center">
+    <div style="flex: auto">
+      <mat-form-field>
+        <mat-label>Buscar medicamento</mat-label>
+        <input matInput [(ngModel)]="query" placeholder="Aprozolam" />
+      </mat-form-field>
+    </div>
+    <div>
+      <button (click)="buscar()" mat-icon-button>
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </div>
+  @for (variante of variantes; track variante._id) {
+  <div class="variante" (click)="agregar(variante)">
+    <div style="width: 150px; display: flex; align-items: center">
+      <img
+        style="
+          width: 100%;
+          border-radius: 16px;
+          object-fit: cover;
+          height: 100%;
+        "
+        [src]="variante.foto | fileView"
+        alt=""
+      />
+    </div>
+    <div style="flex: auto">
+      <p class="name">
+        {{ variante.marca }} {{ variante.presentacion }} x
+        {{ variante.numero_tabletas }}
+      </p>
+      <p style="font-size: 12px; margin-bottom: 2px">
+        {{ variante.descripcion }}
+      </p>
+      <p style="font-size: 12px; margin-bottom: 2px; margin-top: 2px">
+        {{ variante.documento_requerido }}
+      </p>
+      <p style="font-size: 12px; margin-top: 2px">
+        {{ variante.importado ? "Importado" : "Nacional" }}
+      </p>
+    </div>
+  </div>
+  }
+</div>

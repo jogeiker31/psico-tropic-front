@@ -1,0 +1,23 @@
+.example-container {
+    width: auto;
+    height: calc(100vh - 50px);
+  
+    mat-drawer {
+      background: #ececff;
+    }
+  }
+  
+  .toolbar {
+    font-size: 14px;
+    justify-content: space-between;
+  
+    color: white;
+  }
+  
+  .user-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    cursor: pointer;
+  }
+  

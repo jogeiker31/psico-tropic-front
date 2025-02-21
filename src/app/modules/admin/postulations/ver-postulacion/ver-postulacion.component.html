@@ -1,0 +1,35 @@
+<div style="padding: 40px 20px; position: relative">
+  <mat-icon
+    style="cursor: pointer; position: absolute; right: 20px; top: 20px"
+    fontIcon="close"
+    mat-dialog-close
+  ></mat-icon>
+  <p class="modal-title">Postulación</p>
+  <div style="display: flex; justify-content: space-between">
+    <span style="font-size: 12px">Usuario:</span>
+    <span> {{ postulation.user.name }}</span>
+  </div>
+  <div style="display: flex; justify-content: space-between">
+    <span style="font-size: 12px">Correo:</span>
+    <span> {{ postulation.user.email }}</span>
+  </div>
+  <div style="display: flex; justify-content: space-between">
+    <span style="font-size: 12px">Categoria:</span>
+    <span> {{ postulation.category.name }}</span>
+  </div>
+  <div style="margin-top: 20px" innerText="{{ postulation.message }}"></div>
+  <div
+    *ngIf="postulation.status == 'PENDING'"
+    style="margin-top: 20px; display: flex; justify-content: space-evenly"
+  >
+    <button mat-button color="accent" (click)="decline()">Rechazar</button>
+    <button mat-button (click)="accept()">Aceptar</button>
+  </div>
+  <div
+    *ngIf="postulation.status != 'PENDING'"
+    style="margin-top: 20px; text-align: center;font-size: 20px;"
+    [ngStyle]="{color:postulation.status == 'ACCEPTED'?'green':'red'}"
+  >
+    {{postulation.status | status_postulation}}
+  </div>
+</div>

@@ -1,0 +1,103 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$main-color: #408edd;
+
+mat-form-field {
+  width: 100%;
+}
+
+.nav-btn {
+  text-align: left;
+  width: 100%;
+  justify-content: left !important;
+  padding-left: 20px !important;
+}
+
+mat-icon {
+  color: #005cbb !important;
+}
+
+.h2Styled {
+  font-size: 28px !important;
+  text-align: left !important;
+  font-weight: 500 !important;
+  color: #005cbb !important;
+  font-family: "Roboto" !important;
+}
+.modal-title {
+  color: #005cbb !important;
+  font-size: 20px;
+  text-align: center;
+  margin: 5px;
+}
+
+.subtitle {
+  font-size: 22px !important;
+
+  font-weight: 500 !important;
+  color: #005cbb !important;
+  font-family: "Roboto" !important;
+}
+.subtitle2 {
+  font-size: 18px !important;
+
+  font-weight: 500 !important;
+  color: black !important;
+  font-family: "Roboto" !important;
+}
+
+.boxShadow {
+  box-shadow: 0 0 10px 1px #005cbb4f !important;
+}
+
+.lightboxOverlay {
+  z-index: 1050 !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.lightbox {
+  z-index: 1060 !important;
+}
+
+.notifications-menu {
+  max-width: 400px !important; /* Ancho solo para notificaciones */
+}
+
+.premium {
+  border-radius: 30px;
+  width: 50px;
+  height: 20px;
+  object-fit: cover;
+  background-color: blue;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gold;
+}
+
+.bgGradient {
+  background: $main-color;
+}
+
+.bigText {
+  color: white;
+  font-size: 100px;
+  line-height: 133px;
+}
+.fab {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  justify-self: right;
+}

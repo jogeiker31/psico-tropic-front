@@ -1,0 +1,82 @@
+<main class="main">
+  <div class="content bgGradient">
+    <mat-card class="loginCard" appearance="outlined">
+      <mat-card-content>
+        <div style="max-width: 400px; margin: auto">
+          <img width="100px" src="logoapp.png" />
+          <h4>Crear cuenta</h4>
+          <form [formGroup]="form" (ngSubmit)="signin()">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre </mat-label>
+                <input matInput formControlName="name" type="text" />
+                <mat-error
+                  *ngIf="
+                    form.get('Nombre')?.invalid && form.get('email')?.touched
+                  "
+                >
+                  Debe ingresar un nombre
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 10px;">
+              <mat-form-field appearance="outline">
+                <mat-label>Correo electronico</mat-label>
+                <input matInput formControlName="email" type="email" />
+                <mat-error
+                  *ngIf="
+                    form.get('email')?.invalid && form.get('email')?.touched
+                  "
+                >
+                  Debe ingresar un email válido.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 10px;">
+              <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password" type="password" />
+                <mat-error
+                  *ngIf="
+                    form.get('password')?.invalid &&
+                    form.get('password')?.touched
+                  "
+                >
+                  La contraseña es obligatoria.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div style="margin-top: 10px;">
+              <mat-form-field appearance="outline">
+                <mat-label>Repetir contraseña</mat-label>
+                <input matInput formControlName="rpassword" type="password" />
+                <mat-error
+                  *ngIf="
+                    form.get('rpassword')?.hasError('passwordMismatch') &&
+                    form.get('rpassword')?.touched
+                  "
+                >
+                  Las contraseñas deben coincidir
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="form.invalid"
+            >
+              Crear cuenta
+            </button>
+          </form>
+          <div style="margin-top: 10px">
+            <button routerLink="/" mat-button>
+              ¿Ya tienes cuenta? Iniciar Sesión
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</main>

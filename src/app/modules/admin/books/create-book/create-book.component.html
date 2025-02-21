@@ -1,0 +1,87 @@
+<div style="padding: 20px; overflow-y: scroll; max-height: 80vh">
+  <h2 class="h2Styled" style="text-align: center !important">Nuevo libro</h2>
+  <form [formGroup]="form">
+    <div style="display: flex">
+      <div style="min-width: 250px; padding: 10px">
+        <div class="photo" (click)="loadCover()">
+          @if(form.controls["cover"].value){
+          <img
+            class="cover"
+            [src]="form.controls['cover'].value | fileView"
+            alt=""
+          />
+          }
+          <mat-icon class="icon">image</mat-icon>
+        </div>
+      </div>
+      <div style="max-width: 300px">
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="categorie">
+            @for (categorie of categories; track categorie._id) {
+
+            <mat-option [value]="categorie._id">{{
+              categorie.name
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" placeholder="Libro" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Autor</mat-label>
+          <input matInput formControlName="author" placeholder="Joe Doe" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Precio</mat-label>
+          <input
+            matInput
+            formControlName="price"
+            type="number"
+            placeholder="100"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Ex. It makes me feel..."
+      ></textarea>
+    </mat-form-field>
+
+    @if (form.controls["file"].value == ""){
+    <div class="uploadPdf" (click)="loadPdf()">
+      <img width="30px" src="icons/pdf_icon.png" alt="" />
+      <p>Cargar PDF</p>
+    </div>
+    } @else{
+    <div class="uploadedPdf">
+      <button
+        (click)="clearFile()"
+        class="close-btn"
+        mat-icon-button
+        aria-label="Example icon button with a vertical three dot icon"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <img width="30px" src="icons/pdf_icon.png" alt="" />
+      @if(file){
+      <p>{{ file.name }}</p>
+      }
+    </div>
+
+    }
+
+    <div style="text-align: center; margin-top: 20px">
+      <button [disabled]="form.invalid" (click)="create()" mat-flat-button>
+        Crear
+      </button>
+    </div>
+  </form>
+</div>

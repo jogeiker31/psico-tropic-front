@@ -1,0 +1,169 @@
+<div
+  style="
+    min-height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+ 
+>
+  <div>
+    @if(userBook){
+    <mat-card class="boxShadow" appearance="outlined">
+      <mat-card-content>
+        @if(loading){ }@else{ @if(created && purchaseData == null ||
+        purchaseData?.status == "PENDING"){
+        <div style="text-align: center; padding: 16px">
+          <img width="150px" src="logoapp.png" alt="" />
+          <p style="margin-top: 10px">
+            Tu compra está en proceso de validación.
+          </p>
+          <p>Te notificaremos una vez que haya sido revisada.</p>
+          <button
+            routerLink="/app/marketplace"
+            style="margin-top: 10px"
+            mat-flat-button
+          >
+            Continuar
+          </button>
+        </div>
+        }@else{
+        <div style="min-width: 700px; max-width: 1000px">
+          <p style="text-align: center" class="subtitle">
+            Detalles de transacción
+          </p>
+          @if(purchaseData?.status == "REJECTED"){
+          <div>
+            <p style="text-align: center; color: red">Transacción Rechazada</p>
+            <p style="text-align: center">
+              {{ purchaseData!.rejectionReason }}
+            </p>
+          </div>
+          }
+          <div style="display: flex; gap: 20px">
+            @if(book){
+            <div>
+              <div class="book-container" style="padding: 16px">
+                <div class="book">
+                  <img class="cover" [src]="book.cover | fileView" alt="" />
+                </div>
+                <div style="margin-top: 5px">
+                  <p class="name">{{ book.name }}</p>
+
+                  <p class="author">
+                    {{ book.author }}
+                  </p>
+
+                  <div class="price">{{ book.price }} bsd</div>
+                </div>
+              </div>
+            </div>
+            }
+            <div style="padding: 16px; flex: auto">
+              <form [formGroup]="form">
+                <mat-form-field>
+                  <mat-label>Banco Receptor</mat-label>
+                  <mat-select formControlName="bank">
+                    @for (bank of banks; track bank._id) {
+
+                    <mat-option [value]="bank._id"
+                      >{{ bank.bank }} ({{ bank.type }})</mat-option
+                    >
+                    }
+                  </mat-select>
+                </mat-form-field>
+                @if(bankSelected ){ @if(bankSelected.type == "TRANSFERENCIA"){
+                <div style="font-size: 14px">
+                  <p>
+                    Banco:<b> {{ bankSelected.bank }}</b>
+                  </p>
+                  <p>
+                    Titular: <b> {{ bankSelected.name }}</b>
+                  </p>
+                  <p>
+                    Numero de cuenta: <b> {{ bankSelected.bankAccount }}</b>
+                  </p>
+                </div>
+                }@else{
+                <div>
+                  <div style="font-size: 14px">
+                    <p>
+                      Banco:
+                      <b
+                        >{{ bankSelected.bankCode }} -
+                        {{ bankSelected.bank }}</b
+                      >
+                    </p>
+
+                    <p>
+                      CI: <b> {{ bankSelected.identification }} </b>
+                    </p>
+                    <p>
+                      N° celular: <b> {{ bankSelected.mobile }} </b>
+                    </p>
+                  </div>
+                </div>
+                } } @if(bankSelected){
+                <mat-form-field class="example-full-width">
+                  <mat-label>N° referencia (ultimos 4 digitos)</mat-label>
+                  <input
+                    matInput
+                    formControlName="referenceNumber"
+                    placeholder="Libro"
+                  />
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Fecha</mat-label>
+                  <input
+                    formControlName="transactionDate"
+                    matInput
+                    readonly
+                    [matDatepicker]="picker"
+                  />
+
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <p>Captura de pantalla</p>
+                @if(form.value.receiptImage){
+                <div style="position: relative; width: 140px">
+                  <mat-icon
+                    (click)="clearFile()"
+                    style="cursor: pointer; position: absolute; right: 0px"
+                    >close</mat-icon
+                  >
+                  <img
+                    width="120px"
+                    [src]="form.value.receiptImage | fileView"
+                    alt=""
+                  />
+                </div>
+                }@else{
+                <div (click)="loadCover()" class="loadImage">
+                  <mat-icon>image</mat-icon>
+                </div>
+                }
+                <div style="padding: 10px; text-align: center">
+                  <button
+                    [disabled]="form.invalid"
+                    mat-flat-button
+                    (click)="create()"
+                  >
+                    Notificar transacción
+                  </button>
+                </div>
+                }
+              </form>
+            </div>
+          </div>
+        </div>
+        }}
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+</div>

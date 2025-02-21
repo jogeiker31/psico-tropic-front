@@ -1,0 +1,18 @@
+<div>
+  <h2 mat-dialog-title style="text-align: center">{{ data.title }}</h2>
+  <mat-dialog-content style="text-align: center">
+    {{ data.content }}
+    <div
+      style="
+        text-align: center;
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+      "
+    >
+      <button mat-stroked-button mat-dialog-close>Cancelar</button>
+      <button mat-flat-button (click)="accept()">Aceptar</button>
+    </div>
+  </mat-dialog-content>
+</div>

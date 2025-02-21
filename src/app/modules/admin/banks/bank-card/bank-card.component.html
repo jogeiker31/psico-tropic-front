@@ -1,0 +1,56 @@
+<mat-card
+style="
+  background-color: rgba(222, 227, 252, 1);
+  min-width: 300px;
+  position: relative;
+"
+>
+<button
+  [matMenuTriggerFor]="more"
+  style="position: absolute; right: 0px"
+  mat-icon-button
+>
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #more="matMenu">
+  <button mat-menu-item (click)="edit()">Editar</button>
+  <button mat-menu-item (click)="delete()">Eliminar</button></mat-menu
+>
+<mat-card-content>
+  <div style="margin-top: 20px"></div>
+  <p>
+    {{ bank.bank }}
+    <span style="font-size: 10px"> ({{ bank.type }})</span>
+  </p>
+  @if(bank.type == "TRANSFERENCIA"){
+  <div style="font-size: 14px">
+    <p>
+      Banco:<b> {{ bank.bank }}</b>
+    </p>
+    <p>
+      Titular: <b> {{ bank.name }}</b>
+    </p>
+    <p>
+      Numero de cuenta: <b> {{ bank.bankAccount }}</b>
+    </p>
+  </div>
+  }@else{
+  <div>
+    <div style="font-size: 14px">
+      <p>
+        Banco:
+        <b>{{ bank.bankCode }} - {{ bank.bank }}</b>
+      </p>
+
+      <p>
+        CI: <b> {{ bank.identification }} </b>
+      </p>
+      <p>
+        N° celular: <b> {{ bank.mobile }} </b>
+      </p>
+    </div>
+  </div>
+  }
+</mat-card-content>
+</mat-card>

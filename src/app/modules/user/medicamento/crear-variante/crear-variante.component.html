@@ -1,0 +1,77 @@
+<div style="padding: 20px">
+  <p class="subtitle" style="text-align: center">
+    Crear Variante de {{ data.principio_activo }}
+  </p>
+
+  <form [formGroup]="form">
+    <div style="height: 20px"></div>
+    <div style="display: flex; justify-content: center">
+      <div class="photo" (click)="cargarFoto()">
+        @if(form.controls["foto"].value){
+        <img
+          class="cover"
+          [src]="form.controls['foto'].value | fileView"
+          alt=""
+        />
+        }
+        <mat-icon class="icon">image</mat-icon>
+      </div>
+    </div>
+    <div style="height: 20px"></div>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>marca</mat-label>
+      <input matInput type="text" formControlName="marca" placeholder="Calox" />
+    </mat-form-field>
+
+    <div style="display: flex; gap: 20px">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>presentacion</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="presentacion"
+          placeholder="10 mg"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Numero de tabletas</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="numero_tabletas"
+          placeholder="30"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>descripcion</mat-label>
+      <textarea
+        matInput
+        type="text"
+        formControlName="descripcion"
+        placeholder="Breve descripcion.."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Documento Requerido</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="documento_requerido"
+        placeholder="Documento..."
+      />
+    </mat-form-field>
+    <mat-checkbox formControlName="importado">
+      Producto importado
+    </mat-checkbox>
+
+    <div style="text-align: center; padding: 20px">
+      <button mat-flat-button [disabled]="form.invalid" (click)="create()">
+        Crear Medicamento
+      </button>
+    </div>
+  </form>
+</div>

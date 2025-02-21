@@ -1,0 +1,30 @@
+<div class="content">
+  <div style="display: flex; gap: 20px">
+    <div>
+      <img class="cover" [src]="book.cover | fileView" alt="" />
+    </div>
+    <div style="padding: 16px; display: flex; flex-direction: column">
+      <p class="name">{{ book.name }}</p>
+      <p class="author">{{ book.author }} - {{ book.categorie.name }}</p>
+
+      <div style="flex: auto"></div>
+
+      @if (book.file != ""){
+
+      <div class="uploadedPdf" (click)="viewFile()">
+        <img
+          style="cursor: pointer"
+          width="30px"
+          src="icons/pdf_icon.png"
+          alt=""
+        />
+        <p>Ver libro</p>
+      </div>
+
+      }
+    </div>
+  </div>
+  <div class="description">
+    {{ book.description }}
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<h2 style="margin-top: 20px" class="h2Styled">Mis libros</h2>
+<div style="display: flex; gap: 30px; flex-wrap: wrap">
+  @for (book of books; track book._id) {
+
+  <user-book-card [book]="book.book" [userBook]="book" [tryOpen]="bookId"></user-book-card>
+  }
+</div>

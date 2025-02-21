@@ -1,0 +1,25 @@
+.photo {
+    border-radius: 16px;
+    background: #000;
+    width: 230px;
+    overflow: hidden;
+    .cover {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    cursor: pointer;
+    position: relative;
+    height: 150px;
+    display: flex; /* Activar flexbox */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    .icon {
+      color: white !important;
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  

@@ -1,0 +1,25 @@
+<div>
+  <h2 class="h2Styled" style="text-align: center">Libros</h2>
+
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Buscar</mat-label>
+      <input matInput type="search" placeholder="Example" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; gap: 30px; flex-wrap: wrap">
+    @for (book of books; track book._id) {
+
+    <book-card-admin [book]="book"></book-card-admin>
+    }
+  </div>
+  <div class="fab">
+    <button
+      (click)="create()"
+      mat-fab
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

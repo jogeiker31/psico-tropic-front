@@ -1,0 +1,51 @@
+<div>
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+      <div style="margin-top: 20px">
+        <div style="text-align: center">
+          <p style="color: #005cbb; font-weight: 500; font-size: 16px">
+            Desarrollando Bienestar
+          </p>
+          <img width="100px" src="logoapp.png" />
+          <p style="margin-top: 10px; font-size: 18px; font-weight: 500">
+            Bienvenido {{ user?.name }}
+          </p>
+          <p style="margin-top: 10px; font-size: 18px; font-weight: 500">
+            REFERENTE
+          </p>
+        </div>
+
+        <div style="text-align: left">
+          <button class="nav-btn" mat-button routerLink="libros">Libros</button>
+        </div>
+        <div style="text-align: left">
+          <button class="nav-btn" mat-button routerLink="subscriptores">
+            Subscriptores
+          </button>
+        </div>
+        <div style="text-align: left">
+          <button class="nav-btn" mat-button routerLink="metrica">
+            Metrica
+          </button>
+        </div>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <mat-toolbar color="primary" class="toolbar">
+        <span class="spacer"></span>
+        <mat-icon
+          fontIcon="person"
+          [matMenuTriggerFor]="menu"
+          class="user-icon"
+        ></mat-icon>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Perfil</button>
+          <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+        </mat-menu>
+      </mat-toolbar>
+
+      <router-outlet />
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

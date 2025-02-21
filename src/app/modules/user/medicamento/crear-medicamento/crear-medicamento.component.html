@@ -1,0 +1,27 @@
+<div style="padding: 20px">
+  <p class="subtitle" style="text-align: center">Crear Medicamento</p>
+
+  <form [formGroup]="form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Principio Activo</mat-label>
+      <input
+        matInput
+        formControlName="principio_activo"
+        placeholder="Alprozolam"
+      />
+    </mat-form-field>
+
+    <div style="height: 20px"></div>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Limite</mat-label>
+      <input matInput type="number" formControlName="limite" placeholder="1" />
+    </mat-form-field>
+
+    <div style="text-align: center; padding: 20px">
+      <button mat-flat-button [disabled]="form.invalid" (click)="create()">
+        Crear Medicamento
+      </button>
+    </div>
+  </form>
+</div>

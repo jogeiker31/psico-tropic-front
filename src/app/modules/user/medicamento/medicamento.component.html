@@ -1,0 +1,61 @@
+<div>
+  <p class="subtitle">Medicamentos</p>
+
+  <div>
+    @for (medicamento of medicamentos; track medicamento._id) {
+
+    <div class="medicamento">
+      <div>
+        <p class="medicamentoNombre">{{ medicamento.principio_activo }}</p>
+        <button mat-stroked-button (click)="crearVariante(medicamento)">
+          Crear Variante
+        </button>
+      </div>
+      <div style="margin-top: 20px" class="medicamentosContenido">
+        @for (variante of medicamento.variantes; track variante._id) {
+        <div class="variante">
+          <mat-icon
+            style="margin-left: 10px"
+            fontIcon="more_vert"
+            [matMenuTriggerFor]="menu"
+            class="menu"
+          ></mat-icon>
+          <mat-menu #menu="matMenu">
+            <!-- <button mat-menu-item>Perfil</button> -->
+            <button mat-menu-item (click)="editarVariante(variante)">
+              Editar
+            </button>
+            <button mat-menu-item (click)="eliminarVariante(variante)">
+              Eliminar
+            </button>
+          </mat-menu>
+          <img class="image" [src]="variante.foto | fileView" alt="" />
+          <p class="name">
+            {{ variante.marca }} {{ variante.presentacion }} x
+            {{ variante.numero_tabletas }}
+          </p>
+          <p style="font-size: 12px; margin-bottom: 2px">
+            {{ variante.descripcion }}
+          </p>
+          <p style="font-size: 12px; margin-bottom: 2px; margin-top: 2px">
+            {{ variante.documento_requerido }}
+          </p>
+          <p style="font-size: 12px; margin-top: 2px">
+            {{ variante.importado ? "Importado" : "Nacional" }}
+          </p>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+  <div class="fab">
+    <button
+      (click)="create()"
+      mat-fab
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

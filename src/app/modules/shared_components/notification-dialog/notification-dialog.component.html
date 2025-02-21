@@ -1,0 +1,13 @@
+<div style="padding: 20px; min-width: 360px">
+  <p class="subtitle">Notificaciones</p>
+
+  @if(notifications.length == 0){
+  <p style="text-align: center">No hay notificaciones</p>
+  }@else{ @for (notification of notifications; track notification._id) {
+
+  <div class="notification" (click)="open(notification)">
+    <p class="message">{{ notification.message }}</p>
+    <p class="date">{{notification.createdAt |   date : "dd/MM/yyyy HH:mm:ss"}}</p>
+  </div>
+  } }
+</div>

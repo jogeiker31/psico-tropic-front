@@ -1,0 +1,53 @@
+<div
+  style="padding: 22px; min-width: 500px; overflow-y: scroll; max-height: 80vh"
+>
+  @if(!isReject){
+  <p class="subtitle">Detalles de la transacción</p>
+  <div>
+    <div>
+      <div class="book-container" style="padding: 16px">
+        <div class="book" style="text-align: center">
+          <img class="cover" src="premium.jpeg" alt="" />
+        </div>
+        <div style="margin-top: 5px;">
+          <p class="name" style=" text-align: center">Membresia Premium (6 meses )</p>
+
+          <ul>
+            <li>Acceso ilimitado a cursos</li>
+            <li>Acceso a eventos</li>
+            <li>Asesoria con referentes</li>
+            <li>Sin publicidad</li>
+          </ul>
+          <div class="price">1000 bsd</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <img
+        width="150px"
+        [src]="transaction.receiptImage | fileView"
+        (click)="openImage()"
+        style="cursor: pointer"
+        alt=""
+      />
+    </div>
+    <div style="display: flex; gap: 20px; justify-content: center">
+      <button mat-stroked-button (click)="isReject = true">Rechazar</button>
+      <button mat-flat-button (click)="accept()">Confirmar</button>
+    </div>
+  </div>
+  }@else{
+  <p class="subtitle">Rechazar transacción</p>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Motivo</mat-label>
+      <textarea matInput [(ngModel)]="reason"></textarea>
+    </mat-form-field>
+    <div style="display: flex; gap: 20px; justify-content: center">
+      <button mat-stroked-button (click)="cancel()">Cancelar</button>
+      <button mat-flat-button (click)="reject()">Confirmar</button>
+    </div>
+  </div>
+  }
+</div>

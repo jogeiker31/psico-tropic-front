@@ -1,0 +1,28 @@
+@use "variables" as v;
+
+.divider-right {
+  border-right: solid 1px v.$main-color;
+}
+
+.name {
+  color: v.$main-color;
+  font-size: 16px;
+  font-weight: 500;
+}
+.variante {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  margin: 20px;
+}
+.container-variante {
+  border-radius: 20px;
+  border-bottom: solid 1px v.$main-color;
+}
+
+.error {
+  padding: 0px 20px;
+  color: red;
+  font-size: 14px;
+}

@@ -1,0 +1,9 @@
+<div>
+  <h2 style="margin-top: 20px" class="h2Styled">Libros disponibles</h2>
+  <div style="display: flex; gap: 30px; flex-wrap: wrap">
+    @for (book of books; track book._id) {
+
+    <preview-book-card [book]="book"></preview-book-card>
+    }
+  </div>
+</div>

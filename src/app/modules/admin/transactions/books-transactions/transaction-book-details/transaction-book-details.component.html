@@ -1,0 +1,56 @@
+<div
+  style="padding: 22px; min-width: 500px; overflow-y: scroll; max-height: 80vh"
+>
+  @if(!isReject){
+  <p class="subtitle">Detalles de la transacción</p>
+  <div>
+    <p>Libro</p>
+    <p>
+      {{ transaction.userBook.book.name }} -
+      <span style="font-size: 14px">
+        {{ transaction.userBook.book.author }}</span
+      >
+    </p>
+    <p>
+      Precio: <b> {{ transaction.userBook.book.price }} BSD</b>
+    </p>
+    <p>Transacción:</p>
+    <p>
+      Banco : <b>{{ transaction.bank.bank }} ({{ transaction.bank.type }})</b>
+    </p>
+    <p>
+      Referencia : <b>{{ transaction.referenceNumber }} </b>
+    </p>
+    <p>
+      Fecha : <b>{{ transaction.transactionDate | date }} </b>
+    </p>
+    <img
+      width="150px"
+      [src]="transaction.receiptImage | fileView"
+      (click)="openImage()"
+      style="cursor: pointer"
+      alt=""
+    />
+    <div style="display: flex; gap: 20px; justify-content: center">
+      <button mat-stroked-button (click)="isReject = true">Rechazar</button>
+      <button mat-flat-button (click)="accept()">Confirmar</button>
+    </div>
+  </div>
+  }@else{
+  <p class="subtitle">Rechazar transacción</p>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Motivo</mat-label>
+      <textarea
+        matInput
+        [(ngModel)]="reason"
+
+      ></textarea>
+    </mat-form-field>
+    <div style="display: flex; gap: 20px; justify-content: center">
+      <button mat-stroked-button (click)="cancel()">Cancelar</button>
+      <button mat-flat-button (click)="reject()">Confirmar</button>
+    </div>
+  </div>
+  }
+</div>
