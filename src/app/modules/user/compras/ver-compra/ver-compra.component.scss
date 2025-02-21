@@ -1,17 +1,25 @@
 @use "variables" as v;
 
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+
 .divider-right {
   border-right: solid 1px v.$main-color;
 }
 
 .name {
   color: v.$main-color;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 .variante {
   display: flex;
   gap: 10px;
+  flex: auto;
   align-items: center;
 
   margin: 20px;
@@ -19,6 +27,7 @@
 .container-variante {
   border-radius: 20px;
   border-bottom: solid 1px v.$main-color;
+
 }
 
 .error {

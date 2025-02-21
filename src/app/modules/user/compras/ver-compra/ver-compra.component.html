@@ -1,0 +1,92 @@
+<div style="padding: 30px">
+  <button mat-icon-button mat-dialog-close class="close">
+    <mat-icon>close</mat-icon>
+  </button>
+  @if(compra){
+  <div>
+    <p class="subtitle">Numero de Orden: {{ compra.numero_orden }}</p>
+    <p>{{ compra.createdAt | date : "dd/MM/yyyy hh:mm" }}</p>
+    <div style="display: flex">
+      <div style="flex: 1">
+        <p class="subtitle2">Cliente</p>
+        <p style="font-size: 14px">
+          <strong> {{ compra.cliente.nombre_apellido }}</strong>
+        </p>
+        <p style="font-size: 14px">
+          Cedula: <strong>{{ compra.cliente.cedula }}</strong>
+        </p>
+
+        <p style="font-size: 14px">
+          Telefono: <strong>{{ compra.cliente.telefono }}</strong>
+        </p>
+        <p style="font-size: 14px">Dirección:</p>
+        <p>
+          <strong>{{ compra.cliente.direccion }}</strong>
+        </p>
+      </div>
+      <div style="flex: 1">
+        <p class="subtitle2">Doctor</p>
+        <p style="font-size: 14px">
+          <strong>
+            {{ compra.doctor.nombre_apellido }} ({{
+              compra.doctor.codigo_colaborador
+            }})</strong
+          >
+        </p>
+        <p style="font-size: 14px">
+          codigo Farmaceutico:
+          <strong>{{ compra.doctor.codigo_farmaceutico }}</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+  @for (data of compra.medicamentos; track data.id._id) {
+  <div class="container-variante">
+    <div style="display: flex; align-items: center">
+      <div class="variante">
+        <div style="width: 100px; display: flex; align-items: center">
+          <img
+            style="
+              width: 100%;
+              border-radius: 16px;
+              object-fit: cover;
+              height: 100%;
+            "
+            [src]="data.id.foto | fileView"
+            alt=""
+          />
+        </div>
+        <div style="flex: auto">
+          <p class="name">
+            {{ data.id.marca }}
+            {{ data.id.presentacion }} x
+            {{ data.id.numero_tabletas }}
+          </p>
+          <p style="font-size: 12px; margin-bottom: 2px">
+            {{ data.id.descripcion }}
+          </p>
+          <p style="font-size: 12px; margin-bottom: 2px; margin-top: 2px">
+            {{ data.id.documento_requerido }}
+          </p>
+          <p style="font-size: 12px; margin-top: 2px">
+            {{ data.id.importado ? "Importado" : "Nacional" }}
+          </p>
+        </div>
+      </div>
+      <div style="font-size: 18px">
+        X <strong>{{ data.cantidad }}</strong>
+      </div>
+    </div>
+  </div>
+  } @if(compra.recipe){
+  <div style="height: 10px"></div>
+  <p>Recipe:</p>
+  <img
+    width="150px"
+    [src]="compra.recipe | fileView"
+    (click)="openImage()"
+    style="cursor: pointer"
+    alt=""
+  />
+  } }
+</div>

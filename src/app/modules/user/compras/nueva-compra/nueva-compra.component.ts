@@ -11,6 +11,7 @@ import { CompraService } from '../compra.service';
 import { Router } from '@angular/router';
 import { GenericDialogComponent } from '../../../../dialogs/generic-dialog/generic-dialog.component';
 import { firstValueFrom } from 'rxjs';
+import { FilesService } from '../../../../shared/files.service';
 
 @Component({
   selector: 'app-nueva-compra',
@@ -24,10 +25,12 @@ export class NuevaCompraComponent implements OnInit {
     private clienteService: ClienteService,
     private dialog: MatDialog,
     private compraService: CompraService,
-    private router: Router
+    private router: Router,
+    private filesService: FilesService
   ) {
     this.form = this.fb.group({
       tipoCliente: ['', [Validators.required]],
+      recipe: ['', [Validators.required]],
       cliente: this.fb.group({
         cedula: ['', [Validators.required]],
         nombre_apellido: [{ value: '', disabled: true }],
@@ -169,5 +172,24 @@ export class NuevaCompraComponent implements OnInit {
           },
         });
     }
+  }
+
+  cargarFoto() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.click();
+    input.onchange = (ev) => {
+      const target = ev.target as HTMLInputElement;
+      const file = target?.files?.[0];
+      if (file) {
+        this.filesService.uploadFile(file).subscribe({
+          next: (value: any) => {
+            this.form?.controls['recipe'].setValue(value._id);
+          },
+          error(err) {},
+        });
+      }
+    };
   }
 }

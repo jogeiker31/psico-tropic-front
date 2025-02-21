@@ -47,6 +47,19 @@
             <input matInput formControlName="telefono" />
           </mat-form-field>
         </div>
+        <div>
+          Recipe:
+          <div class="photo" (click)="cargarFoto()">
+            @if(form.controls["recipe"].value){
+            <img
+              class="cover"
+              [src]="form.controls['recipe'].value | fileView"
+              alt=""
+            />
+            }
+            <mat-icon class="icon">image</mat-icon>
+          </div>
+        </div>
         <!-- <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>C.I</mat-label>
               <input

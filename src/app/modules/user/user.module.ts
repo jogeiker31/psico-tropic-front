@@ -22,6 +22,7 @@ import { EditarVarianteComponent } from './medicamento/editar-variante/editar-va
 import { ComprasComponent } from './compras/compras.component';
 import { NuevaCompraComponent } from './compras/nueva-compra/nueva-compra.component';
 import { AgregarMedicamentoComponent } from './compras/nueva-compra/agregar-medicamento/agregar-medicamento.component';
+import { VerCompraComponent } from './compras/ver-compra/ver-compra.component';
 
 @NgModule({
   imports: [
@@ -67,6 +68,7 @@ import { AgregarMedicamentoComponent } from './compras/nueva-compra/agregar-medi
     ComprasComponent,
     NuevaCompraComponent,
     AgregarMedicamentoComponent,
+    VerCompraComponent
   ],
 })
 export class UserModule {}
