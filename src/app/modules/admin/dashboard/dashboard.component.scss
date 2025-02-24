@@ -1,28 +1,37 @@
+@use "variables" as v;
+
 .metricCard2 {
-  background: rgba(222, 240, 252, 1);
-  min-width: 300px;
+  background: v.$secondary-color;
+  color: white;
+  min-width: 40%;
   .title {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
   }
   .number {
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
   }
 }
 .metricCard1 {
-  background: rgba(222, 227, 252, 1);
-  min-width: 300px;
+  background: v.$main-color;
+  color: white;
+  min-width: 40%;
   .title {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
   }
   .number {
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
   }
+}
+
+.metric {
+  font-size: 30px;
+  font-weight: 500;
 }

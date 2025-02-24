@@ -1,0 +1,36 @@
+@use "variables" as v;
+
+.divider-right {
+  border-right: solid 1px v.$main-color;
+}
+
+.card-compra {
+  cursor: pointer;
+  color: #000;
+  &:hover {
+    background-color: v.$main-color;
+    color: #fff;
+
+    .order {
+      color: white;
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .order {
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: v.$main-color;
+  }
+  .date {
+    font-size: 12px;
+  }
+
+  .text {
+    font-size: 14px;
+    margin: 2px;
+  }
+}

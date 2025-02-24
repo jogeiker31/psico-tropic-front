@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { MaterialsModule } from '../../materials/materials.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreatePostulationComponent } from './create-postulation/create-postulation.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { PreviewBookCardComponent } from './marketplace/preview-book-card/preview-book-card.component';
 import { FileViewPipe } from '../../file-view.pipe';
@@ -23,6 +22,10 @@ import { ComprasComponent } from './compras/compras.component';
 import { NuevaCompraComponent } from './compras/nueva-compra/nueva-compra.component';
 import { AgregarMedicamentoComponent } from './compras/nueva-compra/agregar-medicamento/agregar-medicamento.component';
 import { VerCompraComponent } from './compras/ver-compra/ver-compra.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { VerClienteComponent } from './cliente/ver-cliente/ver-cliente.component';
+import { MonthYearPipe } from '../../month-year.pipe';
+import { EditarMedicamentoComponent } from './medicamento/editar-medicamento/editar-medicamento.component';
 
 @NgModule({
   imports: [
@@ -31,10 +34,11 @@ import { VerCompraComponent } from './compras/ver-compra/ver-compra.component';
     FormsModule,
     ReactiveFormsModule,
     FileViewPipe,
+    MonthYearPipe,
     RouterModule.forChild([
       {
         path: '',
-        component: HomeComponent,
+        component: MedicamentoComponent,
       },
       {
         path: 'medicamentos',
@@ -48,10 +52,17 @@ import { VerCompraComponent } from './compras/ver-compra/ver-compra.component';
         path: 'compras/nueva',
         component: NuevaCompraComponent,
       },
+      {
+        path: 'clientes',
+        component: ClienteComponent,
+      },
+      {
+        path: 'clientes/ver',
+        component: VerClienteComponent,
+      },
     ]),
   ],
   declarations: [
-    CreatePostulationComponent,
     PreviewBookCardComponent,
     MarketplaceComponent,
     PreviewBookComponent,
@@ -68,7 +79,10 @@ import { VerCompraComponent } from './compras/ver-compra/ver-compra.component';
     ComprasComponent,
     NuevaCompraComponent,
     AgregarMedicamentoComponent,
-    VerCompraComponent
+    VerCompraComponent,
+    ClienteComponent,
+    VerClienteComponent,
+    EditarMedicamentoComponent,
   ],
 })
 export class UserModule {}

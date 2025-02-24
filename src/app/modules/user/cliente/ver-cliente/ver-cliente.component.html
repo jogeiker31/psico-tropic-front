@@ -1,0 +1,73 @@
+<div>
+  @if(cliente){
+  <div style="display: flex">
+    <div class="divider-right" style="flex: auto">
+      <div style="flex: 1; display: flex; margin-top: 20px">
+        <div style="flex: 1; padding: 20px">
+          <p class="subtitle">Historial de compras</p>
+          @for (compra of compras; track compra.date) {
+          <p class="subtitle2">{{ compra.date | monthYear }}</p>
+
+          @for (data of compra.compras; track data._id) {
+          <div style="padding: 10px">
+            <mat-card class="card-compra" (click)="verFactura(data.numero_orden)"
+              ><mat-card-content>
+                <div class="header">
+                  <p class="order">{{ data.numero_orden }}</p>
+                  <p class="date">
+                    {{ data.createdAt | date : "dd/MM/yyyy hh:mm" }}
+                  </p>
+                </div>
+                <p class="text">
+                  Doctor: {{ data.doctor.nombre_apellido }} ({{
+                    data.doctor.cedula
+                  }})
+                </p>
+                <p class="text">Tipo Cliente: {{ data.tipoCliente }}</p>
+                <ul>
+                  @for (medicamento of data.medicamentos; track
+                  medicamento.id._id) {
+
+                  <li class="text">
+                    {{ medicamento.id.principio_activo.principio_activo }} x
+                    {{ medicamento.cantidad }}
+                  </li>
+                  }
+                </ul>
+              </mat-card-content></mat-card
+            >
+          </div>
+
+          } }
+        </div>
+      </div>
+    </div>
+    <div style="padding: 20px; min-width: 300px">
+      <div style="position: sticky; top: 50px">
+        <div>
+          <p style="margin: 5px" class="subtitle">
+            {{ cliente.nombre_apellido }}
+          </p>
+          <p style="margin: 5px">C.I {{ cliente.cedula }}</p>
+          <p style="margin: 5px">Telefono: {{ cliente.telefono }}</p>
+          <p style="margin: 5px">Dirección: {{ cliente.direccion }}</p>
+        </div>
+        <div style="flex: 1; margin-top: 20px">
+          <p class="subtitle">Medicamentos mas comprados</p>
+
+          <ol>
+            @for (medicamento of medicamentos; track
+            medicamento.principioActivo) {
+            <li style="font-size: 24px; font-weight: 500; margin-bottom: 10px">
+              {{ medicamento.principioActivo }} x
+              {{ medicamento.cantidadTotal }}
+            </li>
+
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

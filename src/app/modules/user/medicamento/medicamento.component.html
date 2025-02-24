@@ -1,35 +1,69 @@
 <div>
   <p class="subtitle">Medicamentos</p>
 
-  <div>
-    @for (medicamento of medicamentos; track medicamento._id) {
-
-    <div class="medicamento">
+  <button mat-flat-button (click)="create()">Crear Medicamento</button>
+  <div style="display: flex">
+    <div style="flex: 1; padding: 20px" class="divider-right">
       <div>
-        <p class="medicamentoNombre">{{ medicamento.principio_activo }}</p>
-        <button mat-stroked-button (click)="crearVariante(medicamento)">
-          Crear Variante
-        </button>
+        @for (medicamento of medicamentosSolos; track medicamento._id) {
+
+        <div class="medicamentoCard">
+          <p class="name" (click)="seleccionar(medicamento)">
+            {{ medicamento.principio_activo }}
+          </p>
+          <div>
+            <button
+              mat-icon-button
+              matTooltip="Varaintes"
+              (click)="seleccionar(medicamento)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Editar"
+              (click)="Editar(medicamento)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Eliminar"
+              (click)="delete(medicamento)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        }
       </div>
-      <div style="margin-top: 20px" class="medicamentosContenido">
-        @for (variante of medicamento.variantes; track variante._id) {
-        <div class="variante">
-          <mat-icon
-            style="margin-left: 10px"
-            fontIcon="more_vert"
-            [matMenuTriggerFor]="menu"
-            class="menu"
-          ></mat-icon>
-          <mat-menu #menu="matMenu">
-            <!-- <button mat-menu-item>Perfil</button> -->
-            <button mat-menu-item (click)="editarVariante(variante)">
-              Editar
-            </button>
-            <button mat-menu-item (click)="eliminarVariante(variante)">
-              Eliminar
-            </button>
-          </mat-menu>
+    </div>
+    <div style="flex: 1; padding: 20px">
+      @if(seleccionada){
+      <p class="subtitle2">Variantes</p>
+      <button mat-stroked-button (click)="crearVariante()" >Nueva variante</button>
+      <div style="height: 20px;"></div>
+      @for (variante of medicamentos; track variante._id) {
+      <div class="variante">
+        <mat-icon
+          style="margin-left: 10px"
+          fontIcon="more_vert"
+          [matMenuTriggerFor]="menu"
+          class="menu"
+        ></mat-icon>
+        <mat-menu #menu="matMenu">
+          <!-- <button mat-menu-item>Perfil</button> -->
+          <button mat-menu-item (click)="editarVariante(variante)">
+            Editar
+          </button>
+          <button mat-menu-item (click)="eliminarVariante(variante)">
+            Eliminar
+          </button>
+        </mat-menu>
+        <div style="width: 150px">
           <img class="image" [src]="variante.foto | fileView" alt="" />
+        </div>
+        <div>
           <p class="name">
             {{ variante.marca }} {{ variante.presentacion }} x
             {{ variante.numero_tabletas }}
@@ -44,18 +78,8 @@
             {{ variante.importado ? "Importado" : "Nacional" }}
           </p>
         </div>
-        }
       </div>
+      } }
     </div>
-    }
-  </div>
-  <div class="fab">
-    <button
-      (click)="create()"
-      mat-fab
-      aria-label="Example icon button with a delete icon"
-    >
-      <mat-icon>add</mat-icon>
-    </button>
   </div>
 </div>

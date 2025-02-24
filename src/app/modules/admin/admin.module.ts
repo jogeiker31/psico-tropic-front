@@ -32,6 +32,7 @@ import { EditBankComponent } from './banks/edit-bank/edit-bank.component';
 import { DatabaseComponent } from './database/database.component';
 import { CreateDoctorComponent } from './users/create-doctor/create-doctor.component';
 import { EditDoctorComponent } from './users/edit-doctor/edit-doctor.component';
+import { MonthYearPipe } from '../../month-year.pipe';
 registerLocaleData(localeEs);
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ registerLocaleData(localeEs);
     MaterialsModule,
     FileViewPipe,
     ReactiveFormsModule,
+    MonthYearPipe,
     FormsModule,
 
     RouterModule.forChild([

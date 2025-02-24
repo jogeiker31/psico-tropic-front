@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MedicamentoService,
   MedicamentoVariantes,
+  PrincipioActivo,
   Variante,
 } from '../medicamento.service';
 import { DialogRef } from '@angular/cdk/dialog';
@@ -23,7 +24,7 @@ export class CrearVarianteComponent implements OnInit {
     private dialogRef: DialogRef,
     private filesService: FilesService,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: MedicamentoVariantes
+    @Inject(MAT_DIALOG_DATA) public data: PrincipioActivo
   ) {
     this.form = fb.group({
       principio_activo: [data._id, [Validators.required]],

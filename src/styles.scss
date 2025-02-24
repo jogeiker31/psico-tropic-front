@@ -1,3 +1,8 @@
+@use "variables" as v;
+
+.divider-right {
+  border-right: solid 1px v.$main-color;
+}
 /* You can add global styles to this file, and also import other style files */
 
 html,

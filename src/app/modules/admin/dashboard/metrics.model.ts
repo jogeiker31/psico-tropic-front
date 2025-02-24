@@ -1,43 +1,38 @@
 // To parse this data:
 //
-//   import { Convert, Metrics } from "./file";
+//   import { Convert, Metricas } from "./file";
 //
-//   const metrics = Convert.toMetrics(json);
+//   const metricas = Convert.toMetricas(json);
 
-export interface Metrics {
-    users:                     number;
-    memberships:               number;
-    mApproveds:                number;
-    mRejectes:                 number;
-    mPending:                  number;
-    books:                     number;
-    booksBoughts:              number;
-    booksPending:              number;
-    purchasesByBank:           PurchasesByBank[];
-    membershipPurchasesByBank: PurchasesByBank[];
-    mostBooksBought:           MostBooksBought[];
+export interface Metricas {
+    clientes:              number;
+    medicamentos:          number;
+    variantes:             number;
+    compras:               number;
+    medicamentoMasVendido: MedicamentoMasVendido[];
+    compradores:           Compradore[];
 }
 
-export interface PurchasesByBank {
-    _id:            string;
-    totalPurchases: number;
-    bankName:       string;
-    bankType:       string;
+export interface Compradore {
+    totalCompras: number;
+    _id:          string;
+    nombre:       string;
+    cedula:       string;
 }
 
-export interface MostBooksBought {
-    totalBought: number;
-    bookId:      string;
-    title:       string;
+export interface MedicamentoMasVendido {
+    cantidadTotal:   number;
+    _id:             string;
+    principioActivo: string;
 }
 
 // Converts JSON strings to/from your types
 export class Convert {
-    public static toMetrics(json: string): Metrics {
+    public static toMetricas(json: string): Metricas {
         return JSON.parse(json);
     }
 
-    public static metricsToJson(value: Metrics): string {
+    public static metricasToJson(value: Metricas): string {
         return JSON.stringify(value);
     }
 }

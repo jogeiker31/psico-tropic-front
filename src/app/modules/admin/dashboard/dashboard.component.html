@@ -2,85 +2,81 @@
   <p class="subtitle">Metricas</p>
   @if(metrics){
 
-  <div style="display: flex; gap: 20px; flex-wrap: wrap">
+  <div style="height: 20px"></div>
+  <div
+    style="
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    "
+  >
     <mat-card class="metricCard1">
       <mat-card-content>
-        <p class="title">Usuarios Registrados</p>
-        <p class="number">{{ metrics.users }}</p>
+        <p class="title">Clientes Registrados</p>
+        <p class="number">{{ metrics.clientes }}</p>
       </mat-card-content>
     </mat-card>
     <mat-card class="metricCard2">
       <mat-card-content>
-        <p class="title">Usuarios Premium</p>
-        <p class="number">{{ metrics.memberships }}</p>
+        <p class="title">Medicamentos Registrados</p>
+        <p class="number">{{ metrics.medicamentos }}</p>
       </mat-card-content>
     </mat-card>
     <mat-card class="metricCard1">
       <mat-card-content>
-        <p class="title">Membresias Aceptadas</p>
-        <p class="number">{{ metrics.mApproveds }}</p>
+        <p class="title">Variantes Registradas</p>
+        <p class="number">{{ metrics.variantes }}</p>
       </mat-card-content>
     </mat-card>
     <mat-card class="metricCard2">
       <mat-card-content>
-        <p class="title">Membresias Rechazadas</p>
-        <p class="number">{{ metrics.mRejectes }}</p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="metricCard1">
-      <mat-card-content>
-        <p class="title">Membresias pendientes</p>
-        <p class="number">{{ metrics.mPending }}</p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="metricCard2">
-      <mat-card-content>
-        <p class="title">Libros Creados</p>
-        <p class="number">{{ metrics.books }}</p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="metricCard1">
-      <mat-card-content>
-        <p class="title">Libros Vendidos</p>
-        <p class="number">{{ metrics.booksBoughts }}</p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="metricCard1">
-      <mat-card-content>
-        <p class="title">Libros Pendientes</p>
-        <p class="number">{{ metrics.booksPending }}</p>
+        <p class="title">Compras Registradas</p>
+        <p class="number">{{ metrics.compras }}</p>
       </mat-card-content>
     </mat-card>
   </div>
   <div style="height: 20px"></div>
-  <p class="subtitle">Libros mas vendidos</p>
-  <ol>
-    @for (book of metrics.mostBooksBought; track book.bookId) {
-    <li style="font-size: 20px; font-weight: 500">
-      {{ book.title }} - {{ book.totalBought }} ventas
-    </li>
-    }
-  </ol>
+  <div style="display: flex">
+    <div style="flex: auto;">
+      <p class="subtitle">Medicamento más vendido por principio activo</p>
+      <ol>
+        @for (data of metrics.medicamentoMasVendido; track data.principioActivo) {
+        <li style="font-size: 20px; font-weight: 500; margin-bottom: 10px">
+          {{ data.principioActivo }} x {{ data.cantidadTotal }} ventas
+        </li>
+        }
+      </ol>
+    </div>
+    <div style="flex: auto;">
+      <p class="subtitle">Usuarios que más compran</p>
+      <ol>
+        @for (data of metrics.compradores; track data._id) {
+        <li style="font-size: 20px; font-weight: 500; margin-bottom: 10px">
+          {{ data.nombre }}, CI {{ data.cedula }} x
+          {{ data.totalCompras }} compras
+        </li>
+        }
+      </ol>
+    </div>
+  </div>
   <div style="height: 20px"></div>
-  <p class="subtitle">Compras de libros realizadas por banco</p>
-  <ol>
-    @for (book of metrics.purchasesByBank; track book._id) {
-    <li style="font-size: 20px; font-weight: 500">
-      {{ book.bankName }} ({{ book.bankType }}) -
-      {{ book.totalPurchases }} ventas
-    </li>
+  <p class="subtitle">Total de medicamentos vendidos al mes</p>
+  <div style="display: flex; gap: 10px; align-items: center">
+    <button (click)="next(-1)" mat-icon-button>
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <p style="margin: 0">{{ fecha | monthYear }}</p>
+
+    <button (click)="next(1)" mat-icon-button>
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+  <div>
+    @if(metricsMonth){
+      
     }
-  </ol>
-  <div style="height: 20px"></div>
-  <p class="subtitle">Compras de membresias realizadas por banco</p>
-  <ol>
-    @for (book of metrics.membershipPurchasesByBank; track book._id) {
-    <li style="font-size: 20px; font-weight: 500">
-      {{ book.bankName }} ({{ book.bankType }}) -
-      {{ book.totalPurchases }} ventas
-    </li>
-    }
-  </ol>
+  </div>
 
   }
 </div>

@@ -63,9 +63,19 @@ export interface PrincipioActivo {
 export class MedicamentoService {
   constructor(private http: HttpClient) {}
 
-  obtenerMedicamentos() {
+  obtenerMedicamentosYVariantes() {
     return this.http.get<MedicamentoVariantes[]>(
       `${environment.api_url}/medicamento/variantes`
+    );
+  }
+  obtenerMedicamentos() {
+    return this.http.get<PrincipioActivo[]>(
+      `${environment.api_url}/medicamento`
+    );
+  }
+  obtenerVariantes(id: string) {
+    return this.http.get<Variante[]>(
+      `${environment.api_url}/medicamento/variantes/${id}`
     );
   }
 
@@ -92,6 +102,17 @@ export class MedicamentoService {
       `${environment.api_url}/medicamento/variante/${id}`
     );
   }
+  editarMedicamento(id: string, data: any) {
+    return this.http.patch<PrincipioActivo>(
+      `${environment.api_url}/medicamento/medicamento/${id}`,
+      data
+    );
+  }
+  eliminarMedicamento(id: string) {
+    return this.http.delete<PrincipioActivo>(
+      `${environment.api_url}/medicamento/medicamento/${id}`
+    );
+  }
   buscarVariantes(query: string) {
     return this.http.get<VarianteFull[]>(
       `${environment.api_url}/medicamento/buscar`,
@@ -101,7 +122,5 @@ export class MedicamentoService {
     );
   }
 
-  puedeComprar(){
-    
-  }
+  puedeComprar() {}
 }

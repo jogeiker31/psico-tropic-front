@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   MedicamentoService,
   MedicamentoVariantes,
+  PrincipioActivo,
   Variante,
 } from './medicamento.service';
 import { CrearMedicamentoComponent } from './crear-medicamento/crear-medicamento.component';
@@ -9,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrearVarianteComponent } from './crear-variante/crear-variante.component';
 import { EditarVarianteComponent } from './editar-variante/editar-variante.component';
 import { GenericDeleteDialogComponent } from '../../../dialogs/generic-delete-dialog/generic-delete-dialog.component';
+import { EditarMedicamentoComponent } from './editar-medicamento/editar-medicamento.component';
 
 @Component({
   selector: 'app-medicamento',
@@ -26,14 +28,67 @@ export class MedicamentoComponent implements OnInit {
     this.buscar();
   }
 
-  medicamentos: MedicamentoVariantes[] = [];
-
+  medicamentosSolos: PrincipioActivo[] = [];
+  medicamentos: Variante[] = [];
   buscar() {
+    this.medicamentos = [];
+    this.seleccionada = undefined;
     this.medicamentoService.obtenerMedicamentos().subscribe({
       next: (data) => {
-        this.medicamentos = data;
+        this.medicamentosSolos = data;
       },
     });
+  }
+
+  seleccionada?: PrincipioActivo;
+  seleccionar(select: PrincipioActivo) {
+    this.seleccionada = select;
+    this.medicamentos = [];
+    this.medicamentoService.obtenerVariantes(select._id).subscribe({
+      next: (v) => {
+        this.medicamentos = v;
+      },
+    });
+  }
+
+  delete(medicamento: PrincipioActivo) {
+    this.dialog
+      .open(GenericDeleteDialogComponent, {
+        data: {
+          title: 'Eliminar medicamento',
+          content: '¿Seguro que quieres borrar este medicamento?',
+        },
+      })
+
+      .afterClosed()
+      .subscribe({
+        next: (v) => {
+          if (!v) return;
+          this.medicamentoService
+            .eliminarMedicamento(medicamento._id)
+            .subscribe({
+              next: (v) => {
+                this.buscar();
+              },
+            });
+        },
+      });
+  }
+
+  Editar(medicamento: PrincipioActivo) {
+    this.dialog
+      .open(EditarMedicamentoComponent, {
+        data: medicamento,
+      })
+
+      .afterClosed()
+      .subscribe({
+        next: (v) => {
+          if (v) {
+            this.buscar();
+          }
+        },
+      });
   }
 
   create() {
@@ -46,13 +101,17 @@ export class MedicamentoComponent implements OnInit {
         },
       });
   }
-  crearVariante(data: MedicamentoVariantes) {
+
+  crearVariante() {
     this.dialog
-      .open(CrearVarianteComponent, { minWidth: '500px', data: data })
+      .open(CrearVarianteComponent, {
+        minWidth: '500px',
+        data: this.seleccionada,
+      })
       .afterClosed()
       .subscribe({
         next: (v) => {
-          this.buscar();
+          this.seleccionar(this.seleccionada!);
         },
       });
   }
@@ -71,7 +130,7 @@ export class MedicamentoComponent implements OnInit {
           if (v) {
             this.medicamentoService.eliminarVariante(data._id).subscribe({
               next: (v) => {
-                this.buscar();
+                this.seleccionar(this.seleccionada!);
               },
             });
           }
@@ -85,7 +144,7 @@ export class MedicamentoComponent implements OnInit {
       .afterClosed()
       .subscribe({
         next: (v) => {
-          this.buscar();
+          this.seleccionar(this.seleccionada!);
         },
       });
   }

@@ -1,0 +1,8 @@
+@use "variables" as v;
+
+.row {
+  cursor: pointer;
+  &:hover {
+    background-color: v.$main-color-o;
+  }
+}
