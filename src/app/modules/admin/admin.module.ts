@@ -33,6 +33,8 @@ import { DatabaseComponent } from './database/database.component';
 import { CreateDoctorComponent } from './users/create-doctor/create-doctor.component';
 import { EditDoctorComponent } from './users/edit-doctor/edit-doctor.component';
 import { MonthYearPipe } from '../../month-year.pipe';
+import { BaseChartDirective } from 'ng2-charts';
+import { GraficoMedicamentoComponent } from './dashboard/grafico-medicamento/grafico-medicamento.component';
 registerLocaleData(localeEs);
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ registerLocaleData(localeEs);
     DatabaseComponent,
     CreateDoctorComponent,
     EditDoctorComponent,
+    GraficoMedicamentoComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-ES' },
@@ -73,6 +76,7 @@ registerLocaleData(localeEs);
     FileViewPipe,
     ReactiveFormsModule,
     MonthYearPipe,
+    BaseChartDirective, 
     FormsModule,
 
     RouterModule.forChild([

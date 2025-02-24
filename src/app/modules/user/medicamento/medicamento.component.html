@@ -9,7 +9,7 @@
 
         <div class="medicamentoCard">
           <p class="name" (click)="seleccionar(medicamento)">
-            {{ medicamento.principio_activo }}
+            {{ medicamento.principio_activo }} <span style="font-size: 14px;">({{medicamento.limite}} mensual)</span>
           </p>
           <div>
             <button

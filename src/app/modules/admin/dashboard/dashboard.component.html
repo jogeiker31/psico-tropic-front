@@ -74,7 +74,12 @@
   </div>
   <div>
     @if(metricsMonth){
-      
+      <p class="subtitle2">Medicamentos vendidos: {{metricsMonth.totalMedicamentos}}</p>
+      <p>Detalles:</p>
+     <div style="height: 300px;width: 300px;">
+
+      <app-grafico-medicamento [datosMedicamentos]="metricsMonth.detalle"></app-grafico-medicamento>
+     </div>
     }
   </div>
 

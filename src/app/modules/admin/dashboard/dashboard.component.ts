@@ -12,6 +12,8 @@ import { MetricasMedicamentoMes } from './metris-medicamento-mes.model';
 export class DashboardComponent implements OnInit {
   metrics?: Metricas;
   metricsMonth?: MetricasMedicamentoMes;
+
+  
   constructor(private metricsService: MetricsService) {}
   ngOnInit(): void {
     this.metricsService.get().subscribe({
