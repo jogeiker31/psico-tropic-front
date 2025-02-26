@@ -24,6 +24,7 @@ export interface Variante {
   descripcion: string;
   foto: string;
   documento_requerido: string;
+  principio_activo: PrincipioActivo;
 }
 
 // To parse this data:

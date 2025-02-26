@@ -35,6 +35,7 @@ export class MedicamentoComponent implements OnInit {
     this.seleccionada = undefined;
     this.medicamentoService.obtenerMedicamentos().subscribe({
       next: (data) => {
+        
         this.medicamentosSolos = data;
       },
     });

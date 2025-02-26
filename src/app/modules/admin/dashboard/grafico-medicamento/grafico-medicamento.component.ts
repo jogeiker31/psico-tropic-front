@@ -19,7 +19,7 @@ export class GraficoMedicamentoComponent implements OnInit {
     labels: [],
     datasets: [{ data: [] }],
   };
-  public pieChartType: ChartType = 'pie';
+  // public pieChartType: ChartType = ChartType.;
 
   ngOnInit(): void {
     this.actualizarGrafico();

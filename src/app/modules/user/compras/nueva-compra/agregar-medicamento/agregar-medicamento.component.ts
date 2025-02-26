@@ -24,6 +24,7 @@ export class AgregarMedicamentoComponent implements OnInit {
   buscar() {
     this.medicamentoService.buscarVariantes(this.query).subscribe({
       next: (data) => {
+        console.log(data);
         this.variantes = data;
       },
     });

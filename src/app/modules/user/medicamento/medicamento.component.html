@@ -14,7 +14,7 @@
           <div>
             <button
               mat-icon-button
-              matTooltip="Varaintes"
+              matTooltip="Variantes"
               (click)="seleccionar(medicamento)"
             >
               <mat-icon>add</mat-icon>
@@ -65,6 +65,7 @@
         </div>
         <div>
           <p class="name">
+            {{variante.principio_activo.principio_activo}}
             {{ variante.marca }} {{ variante.presentacion }} x
             {{ variante.numero_tabletas }}
           </p>
