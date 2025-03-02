@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
   styleUrl: './record.component.scss',
 })
 export class RecordComponent {
-  private apiUrl = 'http://localhost:3000';
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private recordService: RecordService, private fb: FormBuilder) {
     this.form = this.fb.group({

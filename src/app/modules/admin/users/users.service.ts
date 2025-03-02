@@ -7,7 +7,6 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root',
 })
 export class UsersService {
-  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {
     this.getUsers();
@@ -18,7 +17,7 @@ export class UsersService {
   $users = new Subject<any>();
 
   getUsers() {
-    this.http.get<any[]>(`${this.apiUrl}/usuario`).subscribe({
+    this.http.get<any[]>(`${environment.api_url}/usuario`).subscribe({
       next: (value) => {
         this.users = value;
         this.$users.next(this.users);

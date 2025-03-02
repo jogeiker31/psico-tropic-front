@@ -8,24 +8,23 @@ import { MembershipModel } from '../shared/models/membership.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000'; // Cambia esto a la URL de tu API
 
   constructor(private http: HttpClient) {}
 
   // Método para iniciar sesión
   login(usuario: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, { usuario, password });
+    return this.http.post(`${environment.api_url}/auth/login`, { usuario, password });
   }
   // Método para iniciar sesión
   signin(body: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/usuario`, body);
+    return this.http.post(`${environment.api_url}/usuario`, body);
   }
 
   isPremium = false;
   user: any;
   // Método para obtener información del usuario
   getUserData() {
-    this.http.get(`${this.apiUrl}/usuario/profile`).subscribe({
+    this.http.get(`${environment.api_url}/usuario/profile`).subscribe({
       next: (user) => {
         this.user = user;
       },
@@ -34,6 +33,6 @@ export class AuthService {
   getUserDataSuscribe() {
     const token = localStorage.getItem('token');
 
-    return this.http.get(`${this.apiUrl}/usuario/profile`);
+    return this.http.get(`${environment.api_url}/usuario/profile`);
   }
 }
