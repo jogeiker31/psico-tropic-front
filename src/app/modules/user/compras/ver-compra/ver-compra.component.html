@@ -4,7 +4,7 @@
   </button>
   @if(compra){
   <div>
-    <p class="subtitle">Numero de Orden: {{ compra.numero_orden }}</p>
+    <p class="subtitle">Número de Orden: {{ compra.numero_orden }}</p>
     <p>{{ compra.createdAt | date : "dd/MM/yyyy hh:mm" }}</p>
     <div style="display: flex">
       <div style="flex: 1">
@@ -13,11 +13,11 @@
           <strong> {{ compra.cliente.nombre_apellido }}</strong>
         </p>
         <p style="font-size: 14px">
-          Cedula: <strong>{{ compra.cliente.cedula }}</strong>
+          Cédula: <strong>{{ compra.cliente.cedula }}</strong>
         </p>
 
         <p style="font-size: 14px">
-          Telefono: <strong>{{ compra.cliente.telefono }}</strong>
+          Teléfono: <strong>{{ compra.cliente.telefono }}</strong>
         </p>
         <p style="font-size: 14px">Dirección:</p>
         <p>
@@ -34,7 +34,7 @@
           >
         </p>
         <p style="font-size: 14px">
-          codigo Farmaceutico:
+          Código farmacéutico :
           <strong>{{ compra.doctor.codigo_farmaceutico }}</strong>
         </p>
       </div>

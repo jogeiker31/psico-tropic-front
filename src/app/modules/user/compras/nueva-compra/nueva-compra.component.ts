@@ -30,7 +30,7 @@ export class NuevaCompraComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       tipoCliente: ['', [Validators.required]],
-      recipe: ['', [Validators.required]],
+      recipe: ['', []],
       cliente: this.fb.group({
         cedula: ['', [Validators.required]],
         nombre_apellido: [{ value: '', disabled: true }],
